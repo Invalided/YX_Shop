@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>商店列表</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+<link rel="stylesheet" href="../resources/css/frontend/shoplist.css">
+<link rel="stylesheet" href="../resources/css/shop/panel.css" />
+</head>
+<body>
+	<div class="page-group">
+		<div class="page">
+			<header class="bar bar-nav">
+				<a class="button button-link button-nav pull-left" external
+					href="index" data-transition='slide-out'> <span
+					class="icon icon-left"></span> 返回
+				</a>
+				<h1 class="title">商店列表</h1>
+			</header>
+			<div class="bar bar-header-secondary">
+				<div class="searchbar">
+					<a class="searchbar-cancel">取消</a>
+					<!-- 搜索栏 -->
+					<div class="search-input">
+						<label class="icon icon-search" for="search"></label> <input
+							type="search" id='search' placeholder='输入关键字...' />
+					</div>
+				</div>
+			</div>
+			<!-- 底部导航栏 -->
+			<nav class="bar bar-tab">
+				<a class="tab-item external" href="index.html"> <span
+					class="icon icon-home"></span>
+					<span class="tab-label">首页</span>
+				</a> 
+				<!-- 商品搜索栏 -->
+				<a class="tab-item external" href="shoplist.html">
+				    <span class="icon icon-search"></span>
+				    <span class="tab-label">商品</span>
+				</a>
+				<a class="tab-item external" href="shopcart.html">
+				    <span class="icon icon-gift"></span>
+				    <span class="tab-label">购物车</span>
+				</a>
+				<a class="tab-item external" href="user.html">
+					<span class="icon icon-me"></span>
+					<span class="tab-label">我</span>
+				</a>
+			</nav>
+			<div class="content infinite-scroll infinite-scroll-bottom"
+				data-distance="100">
+				<!-- 类别列表展示区 -->
+				<div class="shoplist-button-div" id="shoplist-search-div">
+					<!-- <a href="#" class="button">所有货物</a>
+                        <a href="#" class="button">吃的</a>
+                        <a href="#" class="button">喝的</a>
+                        <a href="#" class="button">Usual Button 1</a>
+                        <a href="#" class="button">Usual Button 1</a>
+                        <a href="#" class="button">Usual Button 1</a> -->
+				</div>
+				<div class="select-wrap">
+					<!-- 区域列表展示区 -->
+					<select class="select" id="area-search"></select>
+				</div>
+				<!-- 店铺列表在此添加 -->
+				<div class="list-div shop-list">
+					<!-- <div class="card">
+                            <div class="card-header">传统火锅店</div>
+                            <div class="card-content">
+                                <div class="list-block media-list">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-media">
+                                                <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" width="44">
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-subtitle"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span>2015/01/15</span>
+                                <span>5 评论</span>
+                            </div>
+                        </div> -->
+				</div>
+				<div class="infinite-scroll-preloader">
+					<div class="preloader"></div>
+				</div>
+			</div>
+		</div>
+	<!--侧边栏  -->
+		<div class="panel-overlay"></div>
+		<div class="panel panel-right panel-reveal"  id="panel-right-demo">
+			<div class="content-block">
+				<div class="userinfo">
+					<img src="../resources/img/water.jpg" class="userimg">
+					<p>用户1035425</p>
+				</div>
+				<div class="select">
+					<p>
+						<a href="" class="options">订单中心</a>
+					</p>
+					<p>
+						<a href="" class="options">我的收藏</a>
+					</p>
+					<p>
+						<a href="" class="options">悦享会员</a>
+					</p>
+					<p>
+						<a href="" class="options">更多功能</a>
+					</p>
+					<p>
+						<a href="" class="options">个人设置</a>
+					</p>					
+				</div>
+				
+				<div class="about">
+					<p>
+						<a class="button button-fill open-popup">关于</a>
+					</p>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- about内容 -->
+	<div class="popup popup-about">
+	  <header class="bar bar-nav">
+	    <h1 class="title">关于悦享校园</h1>
+	  </header>
+	  <div class="content">
+	    <div class="content-inner">
+	      <div class="content-block">
+	        <p class="info">悦享校园旨在基于大学生生活现状需求，打造可以提供综合的校园服务于一体的校园商铺平台。以“便捷、快速、优质”为目标，使大学生能愉悦的享受校园生活。</p>
+			<p class="info">悦享校园是基于SSM框架开发的在线o2o商铺，前端页面使用SUI Mobile的UI库，通过ajax与后端数据交互，实现前后端分离。因时间仓促，项目难免有不足之处，项目仍在不断优化中。若在体验中有更好的建议与看法，欢迎反馈。</p>
+			<div>
+				<a class="button button-fill close-popup">确定</a>
+			</div>	
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<script type='text/javascript'
+		src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/common.js'
+		charset='utf-8'></script>
+	<script type='text/javascript'
+		src='../resources/js/frontend/shoplist.js' charset='utf-8'></script>
+</body>
+</html>

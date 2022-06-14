@@ -1,0 +1,20 @@
+.row-shop {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+	margin: 0 auto;
+}
+.row-shop:last-child {
+    border-bottom: 1px solid #999;
+}
+.shop-name {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+.row .col-40,.row .col-20{
+	text-align: center;
+	margin-left: 0;
+}
+.shop-wrap a {
+
+}

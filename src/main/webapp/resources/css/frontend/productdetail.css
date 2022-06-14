@@ -1,0 +1,56 @@
+.shopdetail-button-div {
+    margin: 0 .3rem;
+}
+.shopdetail-button-div > .button {
+    width: 30%;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    display: inline-block;
+    margin: 1%;
+    overflow: hidden;
+}
+
+/* 购物车/支付 */
+.count {
+	width: 94%;
+	background-color: orange;
+	margin: 0 auto;
+	position: fixed;
+	bottom: 3rem;
+	border-radius: 0.325rem;
+	background-color: white;
+	opacity: 0.8;
+	box-shadow: 0px 0px 4px 0 rgb(0 0 0 / 50%);
+	
+}
+
+.add,.pay {
+	float: right;
+	margin-right: 1rem;
+	margin: 0.275rem 1.375rem;
+	border: 1px solid orangered;
+	border-radius: 1.875rem;
+	padding: 0.2rem;
+	background-color: orangered;
+}
+
+.add{
+	float: left;
+	border: 1px solid dodgerblue;
+	background-color: dodgerblue;
+}
+
+.add_button,.pay_button {
+	border: none;
+	outline: none;
+	padding: 0.125rem;
+	width: 4rem;
+	color: white;
+}
+.add_button{
+	background-color: dodgerblue;
+}
+.pay_button{
+	background-color: orangered;
+	
+}

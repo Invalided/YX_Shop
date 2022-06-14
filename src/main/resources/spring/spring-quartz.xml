@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd">
+ 
+ 
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>任务调度配置<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <!-- 实例化bean -->
+    <bean id="productSellDailyService" class="com.study.o2o.service.impl.ProductSellDailyServiceImpl" />
+ 
+    <!-- 配置MethodInvokingJobDetailFactoryBean -->
+    <bean id="jobDetailFactory"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="productSellDailyService" />
+        <property name="targetMethod" value="dailyCalculate" />
+        <property name="concurrent" value="false" />
+    </bean>
+ 
+ 
+    <!-- ============= 调度触发器 ============= -->
+    <bean id="productSellDailyTriggerFactory"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetailFactory" />
+        <!-- 每日凌晨执行一次-->
+        <property name="cronExpression" value="0 0 0 * * ? " />
+    </bean>
+    <!--其他执行执行规则可以自行查找-->
+ 
+    <!-- ============= 调度工厂 ============= -->
+    <bean id="schedulerFactory"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+          lazy-init="false">
+        <property name="triggers">
+            <list>
+                <ref bean="productSellDailyTriggerFactory" />
+            </list>
+        </property>
+    </bean>
+</beans>

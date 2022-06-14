@@ -1,0 +1,40 @@
+.userinfo{
+	text-align: center;
+	color: white;
+	margin-top: 2rem;
+	background-color: #392f41;
+	border-radius: 1rem 1rem 0 0;
+	padding: 1rem;
+	box-shadow: 3px 0px 6px 2px rgb(0 0 0 / 50%);
+}
+
+.userimg{
+	width: 80px;
+	height: 80px;
+	padding: 0.5px;
+	border: 2px solid white;
+	border-radius: 50px;
+}
+.options{
+	color: black;
+	font-size: 18px;
+	font-family: ;
+}
+.button.button-fill{
+	line-height: 1.6rem;
+}
+.button{
+	height: 1.6rem;
+}
+.info{
+	text-indent: 2em;
+}
+.mypage{
+	padding: 1rem;
+	border-radius: 0 0 1rem 1rem;
+	box-shadow: 3px 0px 6px 2px rgb(0 0 0 / 50%);
+}
+
+.content-block{
+	margin-top: 1rem;
+}
