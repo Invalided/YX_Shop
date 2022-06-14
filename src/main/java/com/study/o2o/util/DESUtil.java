@@ -96,17 +96,5 @@ public class DESUtil {
 public static void main(String[] args) {
 		System.out.println(getEncryptString("o2o"));
 		System.out.println(getEncryptString("root"));
-		System.out.println(getDecryptString("a7XL1wjJ/0k="));
-		System.out.println(getDecryptString("Bub14qKq1nJZIU9nmeJjZw=="));
-		//Tencent
-		System.out.println(getEncryptString("root"));
-		System.out.println(getEncryptString("o2oData520.."));
-		//VM
-		System.out.println(getDecryptString("aPPU7XmZuLmw2O3rrUDsIw=="));
-		//BaiDu
-		System.out.println(getEncryptString("Bserver123="));
 		}
-
-	
-
 }
