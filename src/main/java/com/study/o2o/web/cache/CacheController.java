@@ -6,42 +6,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.study.o2o.service.CacheService;
-import com.study.o2o.service.areaService;
-import com.study.o2o.service.headLineService;
-import com.study.o2o.service.shopCategoryService;
+import static com.study.o2o.service.areaService.AREALISTKEY;
+import static com.study.o2o.service.headLineService.HLLISTKEY;
+import static com.study.o2o.service.shopCategoryService.SCLISTKEY;
+
+
+
 
 @Controller
 public class CacheController {
-	
-	@Autowired
+
 	private CacheService cacheService;
+
 	@Autowired
-	private areaService areaService;
-	@Autowired
-	private headLineService headLineService;
-	@Autowired
-	private shopCategoryService shopCategoryService;
-	
+	public void setCacheService(CacheService cacheService) {
+		this.cacheService = cacheService;
+	}
+
 	/**
 	 * 清除区域信息相关的所有Redis缓存
 	 * 
-	 * @return
+	 * @return 操作成功
 	 */
 	@RequestMapping(value = "/clearcache4area",method = RequestMethod.GET)
 	private String clearCache4Area() {
-		cacheService.removeFromCache(areaService.AREALISTKEY);
+		cacheService.removeFromCache(AREALISTKEY);
 		return "shop/operationsuccess";
 	}
 	
 	@RequestMapping(value = "/clearcache4headline",method = RequestMethod.GET)
 	private String clearCache4Headline() {
-		cacheService.removeFromCache(headLineService.HLLISTKEY);
+		cacheService.removeFromCache(HLLISTKEY);
 		return "shop/operationsuccess";
 	}
 	
 	@RequestMapping(value = "/clearcache4shopcategory",method = RequestMethod.GET)
 	private String clearCache4ShopCategory() {
-		cacheService.removeFromCache(shopCategoryService.SCLISTKEY);
+		cacheService.removeFromCache(SCLISTKEY);
 		return "shop/operationsuccess";
 	}
 }

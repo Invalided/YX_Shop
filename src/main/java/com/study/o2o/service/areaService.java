@@ -6,7 +6,9 @@ import com.study.o2o.dto.AreaExecution;
 import com.study.o2o.entity.Area;
 
 public interface areaService {
-	//定义Redis中存放的key值
+	/**
+	 * 定义Redis中存放的key值
+	 */
 	public static final String AREALISTKEY = "arealist";
 	/**
 	 * 获取区域列表信息，优先从缓存获取
