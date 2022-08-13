@@ -69,10 +69,25 @@ public class shopManagementController {
 				modelMap.put("shopId", currentShop.getShopId());
 			}
 		} else {
-			Shop currentShop = new Shop();
-			currentShop.setShopId(shopId);
-			request.getSession().setAttribute("currentShop", currentShop);
-			modelMap.put("redirect", false);
+			// 增强权限校验，提取prehandle的方法，防止横向越权，通过店铺Session匹配
+			List<Shop> shoplist = (List<Shop>)request.getSession().getAttribute("shopList");
+			//非空判断
+			if(shoplist != null) {
+				//遍历可操作的店铺
+				for(Shop shop : shoplist) {
+					//如果当前店铺在可操作的店铺列表中则继续
+					if(shop.getShopId() == shopId) {
+						Shop currentShop = new Shop();
+						currentShop.setShopId(shopId);
+						request.getSession().setAttribute("currentShop", currentShop);
+						modelMap.put("redirect", false);
+					}
+				}
+			}
+			if(modelMap.isEmpty()) {
+				modelMap.put("redirect", true);
+				modelMap.put("url", "/o2o/shopadmin/shoplist");
+			}
 		}
 		return modelMap;
 	}
