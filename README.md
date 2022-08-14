@@ -12,6 +12,6 @@ o2o校园商铺平台Server端 <br/>
 5. 项目中图片文件映射到本地磁盘，将Tomcat中Server.xml的<DocBase>内容修改为自定义内容
 6. 以上配置无误后，运行项目，访问localhost:8000(端口号以Server.xml中配置为准) 即可
 # 项目访问
-根据配置后端接口API前缀为localhost:8000/o2o/
-页面效果需要结合前端项目访问即可
+根据配置后端接口API前缀为localhost:8000/o2o/<br/>
+页面效果需要结合前端项目访问即可<br/>
 博文地址：https://blog.csdn.net/mdzz14/article/details/119394423
