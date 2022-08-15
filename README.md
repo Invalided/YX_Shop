@@ -14,6 +14,7 @@ o2o校园商铺平台Server端 <br/>
 # 项目访问
 根据配置后端接口API前缀为localhost:8000/o2o/<br/>
 # 接口文档
-根据配置后端接口API前缀为localhost:8000/o2o/<br/>
+项目运行成功后在浏览器栏输入http://ip:host/swagger-ui.html
+![接口文档](https://s2.loli.net/2022/08/15/y1xIu7EYeZaJ96O.png)
 页面效果需要结合前端项目访问即可<br/>
 博文地址：https://blog.csdn.net/mdzz14/article/details/119394423
