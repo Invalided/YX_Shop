@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/shopadmin")
+@Api(description = "商品管理")
 public class productManagementController {
 	@Autowired
 	private productService productService;
@@ -45,6 +48,7 @@ public class productManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "商品添加")
 	@RequestMapping(value = "/addproduct",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> addProduct(HttpServletRequest request){
@@ -138,6 +142,7 @@ public class productManagementController {
 	 * @param productId
 	 * @return
 	 */
+	@ApiOperation(value = "商品查询")
 	@RequestMapping(value = "/getproductbyid", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getProductById(@RequestParam Long productId){
@@ -163,6 +168,7 @@ public class productManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "商品修改")
 	@RequestMapping(value = "/modifyproduct",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyProduct(HttpServletRequest request){

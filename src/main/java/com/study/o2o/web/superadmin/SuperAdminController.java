@@ -1,11 +1,13 @@
 package com.study.o2o.web.superadmin;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/superadmin",method = {RequestMethod.GET,RequestMethod.POST})
+@Api(description = "前端页面路由")
 public class SuperAdminController {
 	
 	@RequestMapping(value = "/areamanage",method = RequestMethod.GET)

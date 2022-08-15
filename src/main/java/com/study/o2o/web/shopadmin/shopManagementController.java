@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +39,7 @@ import com.study.o2o.util.pathUtil;
 
 @Controller
 @RequestMapping("/shopadmin")
-// 实现店铺管理逻辑
+@Api(description = "商铺铺管理")
 public class shopManagementController {
 	@Autowired
 	private ShopService shopService;
@@ -51,6 +53,7 @@ public class shopManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "shopId校验")
 	@RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopManagementInfo(HttpServletRequest request) {
@@ -98,7 +101,7 @@ public class shopManagementController {
 	 * @param request
 	 * @return
 	 */
-
+	@ApiOperation(value = "显示商铺列表")
 	@RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopList(HttpServletRequest request) {
@@ -144,6 +147,7 @@ public class shopManagementController {
 	 * 
 	 * @return
 	 */
+	@ApiOperation(value = "获取页面初始信息")
 	@RequestMapping(value = "/getshopinitinfo", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopInitInfo() {
@@ -164,9 +168,15 @@ public class shopManagementController {
 		return modelMap;
 	}
 
+	/**
+	 * 注册店铺
+	 * @param request
+	 * @return
+	 * @throws IOException
+	 */
+	@ApiOperation(value = "注册店铺")
 	@RequestMapping(value = "/registershop", method = RequestMethod.POST)
 	@ResponseBody
-	// 注册店铺
 	private Map<String, Object> registerShop(HttpServletRequest request) throws IOException {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 验证码是否正确
@@ -243,10 +253,11 @@ public class shopManagementController {
 	 * @param request
 	 * @return
 	 */
-	// 1.通过Id获取店铺信息
+	@ApiOperation(value = "获取店铺信息")
 	@RequestMapping(value = "/getshopbyid", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopById(HttpServletRequest request) {
+		// 1.通过Id获取店铺信息
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		Long shopId = httpServletRequestUtil.getLong(request, "shopId");
 		if (shopId > -1) {
@@ -268,10 +279,11 @@ public class shopManagementController {
 
 	}
 
-	// 2.修改店铺信息
+	@ApiOperation(value = "修改店铺信息")
 	@RequestMapping(value = "/modifyshop", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyShop(HttpServletRequest request) {
+		// 2.修改店铺信息
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 验证码是否正确
 		if (!codeUtil.checkVerifyCode(request)) {
@@ -332,29 +344,4 @@ public class shopManagementController {
 			return modelMap;
 		}
 	}
-
-	// private static void inputStreamToFile(InputStream ins,File file) {
-	// FileOutputStream os = null;
-	// try {
-	// os = new FileOutputStream(file);
-	// int bytesRead = 0;
-	// byte[] buffer = new byte[1024];
-	// while((bytesRead = ins.read(buffer))!=-1) {
-	// os.write(buffer,0,bytesRead);
-	// }
-	// } catch (Exception e) {
-	// throw new RuntimeException("调用inputStreamToFile产生异常:"+e.getMessage());
-	// }finally{
-	// try {
-	// if(os!=null) {
-	// os.close();
-	// }
-	// if(ins != null) {
-	// ins.close();
-	// }
-	// } catch (Exception e) {
-	// throw new RuntimeException("inputStreamToFile关闭io产生异常:"+e.getMessage());
-	// }
-	// }
-	// }
 }

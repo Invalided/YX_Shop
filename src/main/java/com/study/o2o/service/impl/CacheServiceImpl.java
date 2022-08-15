@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.study.o2o.cache.JedisUtil;
 import com.study.o2o.service.CacheService;
 
-@Service
+@Service("cacheServiceImpl")
 public class CacheServiceImpl implements CacheService {
 
 	@Autowired

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller 
 @RequestMapping(value = "local", method = {RequestMethod.GET,RequestMethod.POST})
+@Api(description = "用户信息")
 public class localAuthController {
 	@Autowired
 	private localAuthService localAuthService;
@@ -32,6 +35,7 @@ public class localAuthController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation("将用户信息与平台账号绑定")
 	@RequestMapping(value = "/bindlocalauth",method = RequestMethod.GET)
 	@ResponseBody	
 	private Map<String, Object> bindLocalAuth(HttpServletRequest request){
@@ -75,6 +79,7 @@ public class localAuthController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "修改密码")
 	@RequestMapping(value = "/changelocalpwd",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String,Object> changeLocalPwd(HttpServletRequest request){
@@ -130,6 +135,7 @@ public class localAuthController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "登录验证")
 	@RequestMapping(value = "/logincheck", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> logincheck(HttpServletRequest request) {
@@ -180,11 +186,12 @@ public class localAuthController {
 		return modelMap;
 	}
 
+	@ApiOperation("用户退出销毁Session")
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	@ResponseBody
 	/**
 	 * 当用户点击登出按钮的时候注销session
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 * @throws IOException
@@ -201,6 +208,7 @@ public class localAuthController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "用户注册")
 	@RequestMapping(value = "/registerlocalauth",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> registerLocalAuth(HttpServletRequest request){

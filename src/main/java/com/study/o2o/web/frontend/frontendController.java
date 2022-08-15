@@ -2,12 +2,15 @@ package com.study.o2o.web.frontend;
 
 //import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/frontend")
+@Api(description = "前端页面路由")
 public class frontendController {
 	/**
 	 * 首页

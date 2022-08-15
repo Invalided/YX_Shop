@@ -14,6 +14,8 @@ import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.study.o2o.service.ShopService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,7 @@ import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/shopadmin")
+@Api(description = "用户商品管理")
 public class UserProductManagementController {
 	@Autowired
 	private UserProductMapService userProductMapService;
@@ -50,7 +53,12 @@ public class UserProductManagementController {
 	@Autowired
 	private ShopService shopService;
 
-	// 列出每个店铺商品的销售情况
+	/**
+	 * 列出每个店铺商品的销售情况
+	 * @param request
+	 * @return
+	 */
+	@ApiOperation(value =  "列出每个店铺商品的销售情况")
 	@RequestMapping(value = "/listuserproductmapsbyshop", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listUserProductMapsByShop(HttpServletRequest request) {
@@ -85,6 +93,12 @@ public class UserProductManagementController {
 		return modelMap;
 	}
 
+	/**
+	 * 列出店铺每日销情况
+	 * @param request
+	 * @return
+	 */
+	@ApiOperation(value = "列出每个店铺商品的销售情况")
 	@RequestMapping(value = "/listproductselldailyinfobyshop", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listProductSellDailyInfobyShop(HttpServletRequest request) {
@@ -179,6 +193,7 @@ public class UserProductManagementController {
 	 * @return
 	 * @throws IOException
 	 */
+	@ApiOperation(value = "添加用户消费记录")
 	@CrossOrigin
 	@RequestMapping(value = "/adduserproductmap", method = RequestMethod.POST)
 	@ResponseBody

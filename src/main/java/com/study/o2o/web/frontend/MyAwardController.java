@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/frontend")
+@Api(description = "我的奖品")
 public class MyAwardController {
 	@Autowired
 	private UserAwardMapService userAwardMapService;
@@ -38,6 +41,7 @@ public class MyAwardController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "根据顾客奖品映射Id获取单条顾客奖品的映射信息")
 	@RequestMapping(value = "/getawardbyuserawardid",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getAwardById(HttpServletRequest request){
@@ -70,6 +74,7 @@ public class MyAwardController {
 	 */
 	@RequestMapping(value = "/listuserawardmapsbycustomer",method = RequestMethod.GET)
 	@ResponseBody
+	@ApiOperation("获取顾客的兑换奖品列表")
 	private Map<String,Object> listUserAwardMapByCustomer(HttpServletRequest request){
 		Map<String, Object> modelMap = new HashMap<>();
 		//获取分页信息
@@ -114,6 +119,7 @@ public class MyAwardController {
 	 */
 	@RequestMapping(value = "/adduserawardmap",method=RequestMethod.POST)
 	@ResponseBody
+	@ApiOperation("新增奖品兑换信息")
 	private Map<String, Object> addUserAwardMap(HttpServletRequest request){
 		Map<String,Object> modelMap = new HashMap<>();
 		//从session中获取用户信息

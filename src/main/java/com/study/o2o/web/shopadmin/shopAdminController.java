@@ -1,11 +1,13 @@
 package com.study.o2o.web.shopadmin;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "shopadmin",method = {RequestMethod.GET})
+@Api(description = "前端页面路由")
 public class shopAdminController {
 	//返回设置的访问路径
 	@RequestMapping(value = "/shopoperation")

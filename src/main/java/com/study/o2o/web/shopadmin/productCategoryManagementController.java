@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +29,19 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/shopadmin")
+@Api(description = "商品分类")
 public class productCategoryManagementController {
 	@Autowired
 	private productCategoryService productCategoryService;
 	@Autowired
 	private productService productService;
-	
+
+	/**
+	 * 获取商品类别列表
+	 * @param request
+	 * @return
+	 */
+	@ApiOperation(value = "获取商品类别列表")
 	@RequestMapping(value="/getproductcategorylist",method = RequestMethod.GET)
 	@ResponseBody
 	private result<List<productCategory>> getProductCategoryList(HttpServletRequest request){
@@ -52,6 +61,7 @@ public class productCategoryManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "添加商品类别")
 	@RequestMapping(value = "/addproductcategorys", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> addProductCategorys(@RequestBody List<productCategory> productCategoryList,
@@ -82,7 +92,14 @@ public class productCategoryManagementController {
 		}
 		return modelMap;
 	}
-	
+
+	/**
+	 * 删除商品类别
+	 * @param productCategoryId
+	 * @param request
+	 * @return
+	 */
+	@ApiOperation("删除商品类别")
 	@RequestMapping(value = "/removeproductcategory", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String,Object> removeProductCategory(Long productCategoryId,HttpServletRequest request){
@@ -108,6 +125,13 @@ public class productCategoryManagementController {
 		}
 		return modelMap;
 	}
+
+	/**
+	 * 通过商铺获取商品列表
+	 * @param request
+	 * @return
+	 */
+	@ApiOperation(value = "通过商铺获取商品列表")
 	@RequestMapping(value = "/getproductlistbyshop",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getProductListByShop(HttpServletRequest request){

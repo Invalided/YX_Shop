@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/superadmin")
+@Api(description = "头条管理")
 public class HeadLineController {
 	@Autowired
 	private headLineService headLineService;
@@ -40,7 +43,7 @@ public class HeadLineController {
 	 * @param request
 	 * @return
 	 */
-
+	@ApiOperation(value = "根据查询条件分页获取头条列表")
 	@RequestMapping(value = "/listheadlines", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> listHeadLines(HttpServletRequest request) {
@@ -71,6 +74,7 @@ public class HeadLineController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "添加头条信息")
 	@RequestMapping(value = "/addheadline", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> addHaedLine(HttpServletRequest request) {
@@ -134,6 +138,7 @@ public class HeadLineController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation("修改头条信息")
 	@RequestMapping(value = "/modifyheadline", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyHeadLine(HttpServletRequest request) {
@@ -197,6 +202,7 @@ public class HeadLineController {
 	 * @param headLineId
 	 * @return
 	 */
+	@ApiOperation(value = "删除头条信息")
 	@RequestMapping(value = "/removeheadline",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> removeHeadLine(Long headLineId){
@@ -230,6 +236,7 @@ public class HeadLineController {
 	 * @param headLineIdListStr
 	 * @return
 	 */
+	@ApiOperation(value = "批量删除头条信息")
 	@RequestMapping(value = "/removeheadlines",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> removeHeadLines(String headLineIdListStr){

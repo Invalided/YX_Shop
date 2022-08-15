@@ -78,5 +78,4 @@ http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
 		<!-- 默认匹配所有的请求 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 </web-app>

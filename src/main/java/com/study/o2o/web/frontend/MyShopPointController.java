@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/frontend")
+@Api(description = "商品积分")
 public class MyShopPointController {
 	@Autowired
 	private UserShopMapService userShopMapService;
@@ -30,6 +33,7 @@ public class MyShopPointController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "查询用户的积分情况")
 	@RequestMapping(value = "/listusershopmapsbycustomer",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listUserShopMapsByCustomer(HttpServletRequest request){

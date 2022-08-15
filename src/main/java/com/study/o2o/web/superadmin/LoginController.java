@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/superadmin")
+@Api(description = "管理员登录")
 public class LoginController {
 	@Autowired
 	private localAuthService localAuthService;
@@ -27,6 +30,7 @@ public class LoginController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation("登录校验")
 	@RequestMapping(value = "/logincheck",method = RequestMethod.POST)
 	@ResponseBody
 	//跨域请求问题 由于Vue.js的启动端口暂与SSM不同 应添加如下注解

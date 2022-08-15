@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/superadmin")
+@Api(description = "商品类别管理")
 public class ShopCategoryController {
 	@Autowired
 	private shopCategoryService shopCategoryService;
@@ -37,6 +40,7 @@ public class ShopCategoryController {
 	 * 列出店铺类别信息
 	 * @return
 	 */
+	@ApiOperation("列出商铺类别")
 	@RequestMapping(value = "/listshopcategorys", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> listShopCategorys() {
@@ -61,6 +65,7 @@ public class ShopCategoryController {
 	 * 列出一级店铺类别
 	 * @return
 	 */
+	@ApiOperation(value = "列出一级店铺类别")
 	@RequestMapping(value = "/list1stlevelshopcategorys",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> list1stLevelShopCategorys(){
@@ -83,6 +88,7 @@ public class ShopCategoryController {
 	 * 列出二级店铺类别信息
 	 * @return
 	 */
+	@ApiOperation(value = "列出二级店铺类别信息")
 	@RequestMapping(value = "/list2ndlevelshopcategorys", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> list2ndLevelShopCategorys() {
@@ -107,6 +113,7 @@ public class ShopCategoryController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "添加店铺类别")
 	@RequestMapping(value = "/addshopcategory", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> addShopCategory(HttpServletRequest request) {
@@ -167,6 +174,7 @@ public class ShopCategoryController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "修改店铺类别信息")
 	@RequestMapping(value = "/modifyshopcategory",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyShopCategory(HttpServletRequest request) {
@@ -221,6 +229,12 @@ public class ShopCategoryController {
 		return modelMap;
 	}
 
+	/**
+	 * 移除店铺类别
+	 * @param shopCategoryId
+	 * @return
+	 */
+	@ApiOperation(value = "移除店铺类别")
 	@RequestMapping(value = "/removeshopcategory",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> removeHeadLine(Long shopCategoryId){

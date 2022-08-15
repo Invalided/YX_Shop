@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/superadmin")
+@Api(description = "用户信息管理")
 public class PersonInfoController {
 	
 	@Autowired
@@ -30,6 +33,7 @@ public class PersonInfoController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation("列出用户信息")
 	@RequestMapping(value = "/listpersonInfos",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> listPersonInfos(HttpServletRequest request){
@@ -75,10 +79,11 @@ public class PersonInfoController {
 	}
 	
 	/**
-	 * 修改用户细信息,主要是修改用户账号可用状态
+	 * 修改用户信息,主要是修改用户账号可用状态
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "修改用户信息")
 	@RequestMapping(value = "/modifypersonInfo",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String , Object> modifyPersonInfo(HttpServletRequest request){

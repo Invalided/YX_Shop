@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/frontend")
+@Api(description = "个人商品记录")
 public class MyProductController {
 	@Autowired
 	private UserProductMapService userProductMapService;
@@ -31,6 +34,7 @@ public class MyProductController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "列出某个顾客的商品消费信息" )
 	@RequestMapping(value = "/listuserproductmapsbycustomer", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listUserProductMapsByCustomer(HttpServletRequest request){

@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/superadmin")
+@Api(description = "商铺管理")
 public class ShopController {
 	@Autowired
 	private ShopService shopService;
@@ -37,6 +40,7 @@ public class ShopController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "获取店铺列表")
 	@RequestMapping(value = "/listshops",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> listShops(HttpServletRequest request){
@@ -100,6 +104,7 @@ public class ShopController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "根据id返回店铺信息")
 	@RequestMapping(value = "/searchshopbyid",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> searchShopById(HttpServletRequest request){
@@ -134,7 +139,14 @@ public class ShopController {
 			return modelMap;
 		}
 	}
-	
+
+	/**
+	 * 修改商铺信息
+	 * @param shopStr
+	 * @param request
+	 * @return
+	 */
+	@ApiOperation(value = "修改商铺信息")
 	@RequestMapping(value = "/modifyshop",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyShop(String shopStr,HttpServletRequest request){

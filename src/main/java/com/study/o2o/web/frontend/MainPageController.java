@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +20,13 @@ import com.study.o2o.service.shopCategoryService;
 
 @Controller
 @RequestMapping("/frontend")
+@Api(description = "首页信息展示")
 public class MainPageController {
 	@Autowired
 	private shopCategoryService shopCategoryService;
 	@Autowired
 	private headLineService headLineService;
-	
+	@ApiOperation("列出首页所有的信息，无需参数")
 	@RequestMapping(value = "/listmainpageinfo",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String,Object> listMainPageInfo(){

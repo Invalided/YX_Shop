@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,10 @@ import com.study.o2o.enums.AreaStateEnum;
 import com.study.o2o.service.areaService;
 
 
-//声明为controller
+
 @Controller
-//请求的路由URL
 @RequestMapping("/superadmin")
+@Api(description = "区域管理")
 public class areaController {
 	Logger logger = LoggerFactory.getLogger(areaController.class);
 	@Autowired
@@ -36,6 +38,7 @@ public class areaController {
 	 * 获取区域信息
 	 * @return
 	 */
+	@ApiOperation(value = "区域信息列表")
 	//设置访问路由
 	@RequestMapping(value = "/listarea",method = RequestMethod.GET)
 	//将modelMap转换为JSON
@@ -65,7 +68,7 @@ public class areaController {
 	}
 	/**
 	 * 添加区域信息
-	 * @param area
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/addarea",method = RequestMethod.POST)

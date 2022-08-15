@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/frontend")
+@Api(description = "店铺详情")
 public class shopDetailController {
 	@Autowired
 	private ShopService shopService;
@@ -35,6 +38,7 @@ public class shopDetailController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "获取店铺信息以及该店铺下面的商品类别列表")
 	@RequestMapping(value = "/listshopdetailpageinfo",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listShopDetailPageInfo(HttpServletRequest request){
@@ -62,6 +66,7 @@ public class shopDetailController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "依据查询条件分页列出该店铺下的所有商品")
 	@RequestMapping(value = "/listproductsbyshop",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listProductsByShop(HttpServletRequest request){

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ import com.study.o2o.util.httpServletRequestUtil;
 
 @Controller
 @RequestMapping("/shopadmin")
+@Api(description = "奖品管理")
 public class AwardManagementController {
 	@Autowired
 	private AwardService awardService;
@@ -37,6 +40,7 @@ public class AwardManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "通过店铺Id获取该店铺下的奖品列表")
 	@RequestMapping(value = "/listawardsbyshop", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> listAwardByShop(HttpServletRequest request){
@@ -69,6 +73,7 @@ public class AwardManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "通过商品id获取奖品信息")
 	@RequestMapping(value = "/getawardbyid",method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getAwardById(HttpServletRequest request){
@@ -93,6 +98,7 @@ public class AwardManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value = "添加奖品")
 	@RequestMapping(value = "/addaward",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> addAward(HttpServletRequest request){
@@ -160,6 +166,7 @@ public class AwardManagementController {
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation("修改奖品")
 	@RequestMapping(value = "/modifyaward",method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> modifyAward(HttpServletRequest request){
