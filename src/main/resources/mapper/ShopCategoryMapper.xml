@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.o2o.shop.mapper.ShopCategoryMapper">
+    <!-- 自定义返回值映射对象,此处映射非默认实体类，而是自定义的VO对象 -->
+    <resultMap id="shopCategoryMap" type="com.o2o.shop.vo.ShopCategoryVO">
+        <id column = "shop_category_id" property = "shopCategoryId" />
+        <result column = "shop_category_name" property = "shopCategoryName"/>
+        <result column = "shop_category_desc" property = "shopCategoryDesc"/>
+        <result column = "shop_category_img" property = "shopCategoryImg"/>
+        <result column = "priority" property = "priority"/>
+        <result column = "create_time" property = "createTime"/>
+        <result column = "last_edit_time" property = "updateTime"/>
+        <association property = "parent" column = "parent_id"
+                     javaType = "com.o2o.shop.vo.ShopCategoryVO">
+            <id column = "parent_id" property = "shopCategoryId"/>
+            <result column = "parent_name" property = "shopCategoryName"/>
+        </association>
+    </resultMap>
+    
+    <select id="queryShopCategoryListPage" resultMap="shopCategoryMap">
+        select
+        a.shop_category_id,
+        a.shop_category_name,
+        a.shop_category_desc,
+        a.shop_category_img,
+        a.priority,
+        a.create_time,
+        a.last_edit_time,
+        a.parent_id,
+        b.shop_category_name as parent_name
+        From
+        tb_shop_category a
+        left join
+        tb_shop_category b
+        on a.parent_id = b.shop_category_id
+        <!-- boolean判断 test = "xx" or test = "!xx" -->
+        <if test = "!allPage">
+            <where>
+                <if test = "shopCategoryCondition == null">
+                    and a.parent_id is null
+                </if>
+                <if test = "shopCategoryCondition != null">
+                    and a.parent_id is not null
+                </if>
+                <if test = "shopCategoryCondition != null and shopCategoryCondition.parent != null and shopCategoryCondition.parent.shopCategoryId != null">
+                    and a.parent_id = #{shopCategoryCondition.parent.shopCategoryId}
+                </if>
+            </where>
+        </if>
+        order by
+        priority desc
+    </select>
+</mapper>

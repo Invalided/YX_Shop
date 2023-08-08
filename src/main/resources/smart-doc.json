@@ -1,0 +1,20 @@
+{
+  "outPath": "src/main/resources/static/doc",
+  "projectName": "o2oBoot",
+  "packageFilters": "com.o2o.shop.api.*",
+  "openUrl": "http://localhost:7700/api",
+  "appToken": "your token",
+  "debugEnvName":"本地环境",
+  "debugEnvUrl":"http://127.0.0.1:8080",
+  "tornaDebug": true,
+  "replace": true,
+  "responseBodyAdvice":{
+    "className":"com.o2o.shop.vo.ResultDataVO"
+  },
+  "errorCodeDictionaries": [{
+    "title": "业务错误码对照",
+    "enumClassName": "com.o2o.shop.exception.ExceptionCodeEnum",
+    "codeField": "code",
+    "descField": "message"
+  }]
+}

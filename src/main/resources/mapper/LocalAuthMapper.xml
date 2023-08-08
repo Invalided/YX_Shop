@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 示例mapper文件 -->
+<mapper namespace="com.o2o.shop.mapper.LocalAuthMapper">
+    <resultMap id="localAuthMap" type="com.o2o.shop.vo.LocalAuthVO">
+        <id column="local_auth_id" property="localAuthId" />
+        <result column="username" property="userName" />
+        <result column="password" property="passWord" />
+        <association property="personInfo" column="user_id"
+                     javaType="com.o2o.shop.model.PersonInfoDO">
+            <id column="user_id" property="userId" />
+            <result column="name" property="name" />
+            <result column="gender" property="gender" />
+            <result column="email" property="email" />
+            <result column="profile_img" property="profileImg" />
+            <result column="user_type" property="userType" />
+            <result column="create_time" property="createTime" />
+            <result column="last_edit_time" property="updateTime" />
+            <result column="enable_status" property="enableStatus" />
+        </association>
+
+    </resultMap>
+
+    <select id="queryLocalAuthInfo" resultMap="localAuthMap">
+        SELECT
+            l.local_auth_id,
+            l.username,
+            l.password,
+            p.user_id,
+            p.name,
+            p.gender,
+            p.profile_img,
+            p.email,
+            p.user_type,
+            p.enable_status,
+            p.create_time,
+            p.last_edit_time
+        FROM
+            tb_local_auth l
+                LEFT JOIN
+            tb_person_info p
+            ON
+                l.user_id = p.user_id
+        where
+          l.username = #{username}
+          and l.password = #{password}
+    </select>
+</mapper>

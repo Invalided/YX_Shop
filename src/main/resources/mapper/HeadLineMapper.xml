@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.o2o.shop.mapper.HeadLineMapper">
+
+    <select id="queryHeadLinePage" resultType="com.o2o.shop.vo.HeadLineVO">
+        select
+        h.line_id,
+        h.line_name,
+        h.line_link,
+        h.line_img,
+        h.priority,
+        h.enable_status,
+        h.create_time,
+        h.last_edit_time as update_time
+        from
+        tb_head_line h
+        <where>
+            <if test = "headLineCondition != null and headLineCondition.lineName != null">
+               -- 使用instr 代替like模糊查询
+               and instr(h.line_name,#{headLineCondition.lineName}) > 0
+            </if>
+            <if test = "headLineCondition != null and headLineCondition.enableStatus != null">
+               and h.enable_status = #{headLineCondition.enableStatus}
+            </if>
+        </where>
+        order by
+        h.priority desc
+    </select>
+</mapper>

@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="smart-doc">
+    <title>o2oBoot</title>
+    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="AllInOne.css?v=1690521886901"/>
+    
+    <style>.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint {
+        background: #f7f7f8;
+    }
+
+    .hljs {
+        padding: 0em;
+    }</style>
+    <script src="highlight.min.js"></script>
+    <script src="jquery.min.js"></script>
+</head>
+<body class="book toc2 toc-left">
+<div id="header"><h1>o2oBoot</h1>
+    <div id="toc" class="toc2">
+        <div id="book-search-input"><input id="search" type="text" placeholder="Type to search"></div>
+        <div id="toctitle"><span>API Reference</span></div>
+        <ul id="accordion" class="sectlevel1">
+            <li class=""><a class="dd" href="api.html#header">1.&nbsp;AdminAuthController 管理员登录</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="api.html#_1_1_管理员登录接口">1.1.&nbsp;管理员登录接口</a>
+                    </li>
+
+                    <li><a
+                            href="api.html#_1_2_管理员修改密码">1.2.&nbsp;管理员修改密码</a>
+                    </li>
+
+                    <li><a
+                            href="api.html#_1_3_管理员退出登录">1.3.&nbsp;管理员退出登录</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="LocalAuthController.html#header">2.&nbsp;LocalAuthController 用户/商家登录</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="LocalAuthController.html#_2_1_用户注册信息接口">2.1.&nbsp;用户注册信息接口</a>
+                    </li>
+
+                    <li><a
+                            href="LocalAuthController.html#_2_2_用户登录接口">2.2.&nbsp;用户登录接口</a>
+                    </li>
+
+                    <li><a
+                            href="LocalAuthController.html#_2_3_用户修改密码">2.3.&nbsp;用户修改密码</a>
+                    </li>
+
+                    <li><a
+                            href="LocalAuthController.html#_2_4_用户退出登录">2.4.&nbsp;用户退出登录</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="HelloController.html#header">3.&nbsp;HelloController 项目使用基本示例</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="HelloController.html#_3_1_GetMapping 请求">3.1.&nbsp;GetMapping 请求</a>
+                    </li>
+
+                    <li><a
+                            href="HelloController.html#_3_2_测试统一异常处理">3.2.&nbsp;测试统一异常处理</a>
+                    </li>
+
+                    <li><a
+                            href="HelloController.html#_3_3_PostMapping 请求">3.3.&nbsp;PostMapping 请求</a>
+                    </li>
+
+                    <li><a
+                            href="HelloController.html#_3_4_PostMapping 请求">3.4.&nbsp;PostMapping 请求</a>
+                    </li>
+
+                    <li><a
+                            href="HelloController.html#_3_5_DeleteMapping请求">3.5.&nbsp;DeleteMapping请求</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="MainPageController.html#header">4.&nbsp;MainPageController 商铺前台主页面</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="MainPageController.html#_4_1_获取首页信息">4.1.&nbsp;获取首页信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ProductDetailController.html#header">5.&nbsp;ProductDetailController 商品详情页面</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ProductDetailController.html#_5_1_根据Id获取商品的详细信息">5.1.&nbsp;根据Id获取商品的详细信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ShopDetailController.html#header">6.&nbsp;ShopDetailController 商铺详情</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ShopDetailController.html#_6_1_根据商铺Id获取商铺信息">6.1.&nbsp;根据商铺Id获取商铺信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopDetailController.html#_6_2_根据商铺信息条件查询">6.2.&nbsp;根据商铺信息条件查询</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ShopListController.html#header">7.&nbsp;ShopListController 商铺列表页面</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ShopListController.html#_7_1_获取列表页的相关信息">7.1.&nbsp;获取列表页的相关信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopListController.html#_7_2_获取指定条件下的商铺">7.2.&nbsp;获取指定条件下的商铺</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="UserConsumptionController.html#header">8.&nbsp;UserConsumptionController 用户消费记录</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="UserConsumptionController.html#_8_1_用户购物订单创建">8.1.&nbsp;用户购物订单创建</a>
+                    </li>
+
+                    <li><a
+                            href="UserConsumptionController.html#_8_2_用户订单列表接口">8.2.&nbsp;用户订单列表接口</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="RedisController.html#header">9.&nbsp;RedisController Redis简单使用示例</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="RedisController.html#_9_1_根据key获取value">9.1.&nbsp;根据key获取value</a>
+                    </li>
+
+                    <li><a
+                            href="RedisController.html#_9_2_仅作演示使用，传入key、value值存入缓存">9.2.&nbsp;仅作演示使用，传入key、value值存入缓存</a>
+                    </li>
+
+                    <li><a
+                            href="RedisController.html#_9_3_根据key删除缓存">9.3.&nbsp;根据key删除缓存</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="AwardManageController.html#header">10.&nbsp;AwardManageController 奖品管理(Manager)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="AwardManageController.html#_10_1_获取当前的奖品列表">10.1.&nbsp;获取当前的奖品列表</a>
+                    </li>
+
+                    <li><a
+                            href="AwardManageController.html#_10_2_创建奖品信息">10.2.&nbsp;创建奖品信息</a>
+                    </li>
+
+                    <li><a
+                            href="AwardManageController.html#_10_3_更新奖品信息">10.3.&nbsp;更新奖品信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ConsumptionRecordController.html#header">11.&nbsp;ConsumptionRecordController 消费记录管理(Manager)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ConsumptionRecordController.html#_11_1_获取当前商铺下的消费信息">11.1.&nbsp;获取当前商铺下的消费信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ProductCategoryManageController.html#header">12.&nbsp;ProductCategoryManageController 商家商品类别管理(Manager)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ProductCategoryManageController.html#_12_1_批量新增商品类别">12.1.&nbsp;批量新增商品类别</a>
+                    </li>
+
+                    <li><a
+                            href="ProductCategoryManageController.html#_12_2_商品类别删除">12.2.&nbsp;商品类别删除</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="open"><a class="dd" href="ProductManageController.html#header">13.&nbsp;ProductManageController 商品管理(Manager)</a>
+                <ul class="sectlevel2" style="display: block">
+                    <li><a
+                            href="ProductManageController.html#_13_1_根据商铺id获取当前已经上架的商品列表">13.1.&nbsp;根据商铺id获取当前已经上架的商品列表</a>
+                    </li>
+
+                    <li><a
+                            href="ProductManageController.html#_13_2_获取指定商铺的商品类别信息">13.2.&nbsp;获取指定商铺的商品类别信息</a>
+                    </li>
+
+                    <li><a
+                            href="ProductManageController.html#_13_3_创建商品">13.3.&nbsp;创建商品</a>
+                    </li>
+
+                    <li><a
+                            href="ProductManageController.html#_13_4_修改商品信息">13.4.&nbsp;修改商品信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ShopInfoManageController.html#header">14.&nbsp;ShopInfoManageController 商铺信息管理(Manager)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ShopInfoManageController.html#_14_1_根据商铺id获取当前商铺信息">14.1.&nbsp;根据商铺id获取当前商铺信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopInfoManageController.html#_14_2_商铺信息修改">14.2.&nbsp;商铺信息修改</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ShopListManageController.html#header">15.&nbsp;ShopListManageController 后台管理商铺列表(Manager)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ShopListManageController.html#_15_1_获取商家创建的商铺列表">15.1.&nbsp;获取商家创建的商铺列表</a>
+                    </li>
+
+                    <li><a
+                            href="ShopListManageController.html#_15_2_创建商铺时先获取初始信息
+获取二级分类,以及当前的区域信息">15.2.&nbsp;创建商铺时先获取初始信息<br>获取二级分类,以及当前的区域信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopListManageController.html#_15_3_商铺创建">15.3.&nbsp;商铺创建</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="UserPointManageController.html#header">16.&nbsp;UserPointManageController 商家积分管理(Manager)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="UserPointManageController.html#_16_1_">16.1.&nbsp;</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="AreaController.html#header">17.&nbsp;AreaController  区域信息管理(Admin)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="AreaController.html#_17_1_根据Id获取区域信息">17.1.&nbsp;根据Id获取区域信息</a>
+                    </li>
+
+                    <li><a
+                            href="AreaController.html#_17_2_获取所有的区域信息">17.2.&nbsp;获取所有的区域信息</a>
+                    </li>
+
+                    <li><a
+                            href="AreaController.html#_17_3_新增区域信息">17.3.&nbsp;新增区域信息</a>
+                    </li>
+
+                    <li><a
+                            href="AreaController.html#_17_4_删除区域信息">17.4.&nbsp;删除区域信息</a>
+                    </li>
+
+                    <li><a
+                            href="AreaController.html#_17_5_更新区域信息">17.5.&nbsp;更新区域信息</a>
+                    </li>
+
+                    <li><a
+                            href="AreaController.html#_17_6_批量删除区域信息">17.6.&nbsp;批量删除区域信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="HeadLineController.html#header">18.&nbsp;HeadLineController 头条信息管理(Admin)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="HeadLineController.html#_18_1_获取所有的头条信息">18.1.&nbsp;获取所有的头条信息</a>
+                    </li>
+
+                    <li><a
+                            href="HeadLineController.html#_18_2_获取指定的头条信息">18.2.&nbsp;获取指定的头条信息</a>
+                    </li>
+
+                    <li><a
+                            href="HeadLineController.html#_18_3_新增头条信息,此处不能使用RequestBody注解，因为需要上传图片，contentType = multipart/form-data,">18.3.&nbsp;新增头条信息,此处不能使用RequestBody注解，因为需要上传图片，contentType = multipart/form-data,</a>
+                    </li>
+
+                    <li><a
+                            href="HeadLineController.html#_18_4_根据id删除头条信息">18.4.&nbsp;根据id删除头条信息</a>
+                    </li>
+
+                    <li><a
+                            href="HeadLineController.html#_18_5_根据Id更新头条信息">18.5.&nbsp;根据Id更新头条信息</a>
+                    </li>
+
+                    <li><a
+                            href="HeadLineController.html#_18_6_批量删除头条信息">18.6.&nbsp;批量删除头条信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="PersonInfoController.html#header">19.&nbsp;PersonInfoController 用户信息管理(Admin)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="PersonInfoController.html#_19_1_根据用户Id获取用户信息">19.1.&nbsp;根据用户Id获取用户信息</a>
+                    </li>
+
+                    <li><a
+                            href="PersonInfoController.html#_19_2_分页查询返回用户数据">19.2.&nbsp;分页查询返回用户数据</a>
+                    </li>
+
+                    <li><a
+                            href="PersonInfoController.html#_19_3_修改用户信息">19.3.&nbsp;修改用户信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ShopCategoryController.html#header">20.&nbsp;ShopCategoryController 类别信息管理(Admin)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ShopCategoryController.html#_20_1_获取shopCategory所有信息列表">20.1.&nbsp;获取shopCategory所有信息列表</a>
+                    </li>
+
+                    <li><a
+                            href="ShopCategoryController.html#_20_2_不分页返回所有的一级列表">20.2.&nbsp;不分页返回所有的一级列表</a>
+                    </li>
+
+                    <li><a
+                            href="ShopCategoryController.html#_20_3_不分页返回所有的二级列表">20.3.&nbsp;不分页返回所有的二级列表</a>
+                    </li>
+
+                    <li><a
+                            href="ShopCategoryController.html#_20_4_">20.4.&nbsp;</a>
+                    </li>
+
+                    <li><a
+                            href="ShopCategoryController.html#_20_5_更新类别信息">20.5.&nbsp;更新类别信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopCategoryController.html#_20_6_根据id删除对应类别信息">20.6.&nbsp;根据id删除对应类别信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="ShopController.html#header">21.&nbsp;ShopController 商铺信息管理(Admin)</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="ShopController.html#_21_1_获取所有商铺信息">21.1.&nbsp;获取所有商铺信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopController.html#_21_2_根据id获取指定店铺信息">21.2.&nbsp;根据id获取指定店铺信息</a>
+                    </li>
+
+                    <li><a
+                            href="ShopController.html#_21_3_更新商铺信息">21.3.&nbsp;更新商铺信息</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a class="dd" href="UserController.html#header">22.&nbsp;UserController 用户模块简单示例</a>
+                <ul class="sectlevel2" style="display: none">
+                    <li><a
+                            href="UserController.html#_22_1_根据Id获取用户信息">22.1.&nbsp;根据Id获取用户信息</a>
+                    </li>
+
+                    <li><a
+                            href="UserController.html#_22_2_新增用户信息">22.2.&nbsp;新增用户信息</a>
+                    </li>
+
+                    <li><a
+                            href="UserController.html#_22_3_修改用户信息">22.3.&nbsp;修改用户信息</a>
+                    </li>
+
+                    <li><a
+                            href="UserController.html#_22_4_根据id删除用户">22.4.&nbsp;根据id删除用户</a>
+                    </li>
+
+                    <li><a
+                            href="UserController.html#_22_5_分页查询用户">22.5.&nbsp;分页查询用户</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="error.html#header">23.&nbsp;错误码列表</a></li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div class="sect1"><h2 id="_ProductManageController 商品管理(Manager)"><a class="anchor" href="#_ProductManageController 商品管理(Manager)"></a><a class="link" href="#_ProductManageController 商品管理(Manager)">13.&nbsp;ProductManageController 商品管理(Manager)</a>
+    </h2>
+        <div class="sectionbody">
+            <div class="sect2"><h3 id="_13_1_根据商铺id获取当前已经上架的商品列表">
+                <a class="anchor" href="#_13_1_根据商铺id获取当前已经上架的商品列表"></a>
+                <a class="link" href="#_13_1_根据商铺id获取当前已经上架的商品列表">13.1.&nbsp;根据商铺id获取当前已经上架的商品列表</a>
+            </h3>
+                <div class="paragraph"><p><strong>URL:</strong><a href="/manager/product/list" class="bare">&nbsp;/manager/product/list</a>
+                </p></div>
+                <div class="paragraph"><p><strong>Type:</strong>&nbsp;GET</p></div>
+                <div class="paragraph"><p><strong>Author:</strong>&nbsp;勿忘初心</p></div>
+                <div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;application/x-www-form-urlencoded;charset=UTF-8</p></div>
+                <div class="paragraph"><p><strong>Description:</strong>&nbsp;根据商铺id获取当前已经上架的商品列表</p></div>
+                <div class="paragraph"><p><strong>Query-parameters:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Parameter</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Required</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productName</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品名</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">enableStatus</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">shopId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">所属商铺id</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productCategoryId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品类别id</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">pageNum</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">当前页码</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">pageSize</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">页面数据量</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Request-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="bash">curl -X GET -i /manager/product/list?productName=chanda.kiehn&enableStatus=816&shopId=111&productCategoryId=523&pageNum=209&pageSize=10</code></pre>
+                    </div>
+                </div>
+                <div class="paragraph"><p><strong>Response-fields:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Field</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">调用结果状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">响应代码</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">详细信息</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">data</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">返回数据,数据为空则不返回</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">└─result</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">└─total</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Response-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="json">{
+  "success": true,
+  "code": 977,
+  "message": "success",
+  "data": {
+    "result": {},
+    "total": 606
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sect2"><h3 id="_13_2_获取指定商铺的商品类别信息">
+                <a class="anchor" href="#_13_2_获取指定商铺的商品类别信息"></a>
+                <a class="link" href="#_13_2_获取指定商铺的商品类别信息">13.2.&nbsp;获取指定商铺的商品类别信息</a>
+            </h3>
+                <div class="paragraph"><p><strong>URL:</strong><a href="/manager/category/list" class="bare">&nbsp;/manager/category/list</a>
+                </p></div>
+                <div class="paragraph"><p><strong>Type:</strong>&nbsp;GET</p></div>
+                <div class="paragraph"><p><strong>Author:</strong>&nbsp;勿忘初心</p></div>
+                <div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;application/x-www-form-urlencoded;charset=UTF-8</p></div>
+                <div class="paragraph"><p><strong>Description:</strong>&nbsp;获取指定商铺的商品类别信息</p></div>
+                <div class="paragraph"><p><strong>Query-parameters:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Parameter</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Required</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">shopId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商铺id</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Request-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="bash">curl -X GET -i /manager/category/list?shopId=14</code></pre>
+                    </div>
+                </div>
+                <div class="paragraph"><p><strong>Response-fields:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Field</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">调用结果状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">响应代码</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">详细信息</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">data</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">返回数据,数据为空则不返回</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">└─result</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">└─total</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">No comments found.</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Response-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="json">{
+  "success": true,
+  "code": 945,
+  "message": "success",
+  "data": {
+    "result": {},
+    "total": 736
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sect2"><h3 id="_13_3_创建商品">
+                <a class="anchor" href="#_13_3_创建商品"></a>
+                <a class="link" href="#_13_3_创建商品">13.3.&nbsp;创建商品</a>
+            </h3>
+                <div class="paragraph"><p><strong>URL:</strong><a href="/manager/product/operation" class="bare">&nbsp;/manager/product/operation</a>
+                </p></div>
+                <div class="paragraph"><p><strong>Type:</strong>&nbsp;POST</p></div>
+                <div class="paragraph"><p><strong>Author:</strong>&nbsp;勿忘初心</p></div>
+                <div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;multipart/form-data</p></div>
+                <div class="paragraph"><p><strong>Description:</strong>&nbsp;创建商品</p></div>
+                <div class="paragraph"><p><strong>Query-parameters:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Parameter</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Required</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">shopId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">所属商铺id,可从session中获取</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品id</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productName</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品名称</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productCategoryId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品类别</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">priority</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品权重</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">point</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品积分</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">normalPrice</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品日常价格(原价)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">promotionPrice</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品促销价格(现价)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productDesc</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品描述</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">enableStatus</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">启用状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">thumbnail</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">file</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">缩略图(主图,不能为空)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">detailImg</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">file</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">详情图(至少一张)(array of file)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Request-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="bash">curl -X POST -H 'Content-Type: multipart/form-data' -F 'thumbnail=' -F 'detailImg=' -i /manager/product/operation --data 'shopId=10&productId=426&productName=chanda.kiehn&productCategoryId=253&priority=627&point=799&normalPrice=5euo3a&promotionPrice=2rhurc&productDesc=a7o47q&enableStatus=24'</code></pre>
+                    </div>
+                </div>
+                <div class="paragraph"><p><strong>Response-fields:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Field</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">调用结果状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">响应代码</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">详细信息</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">data</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">返回数据,数据为空则不返回</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Response-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="json">{
+  "success": true,
+  "code": 383,
+  "message": "success",
+  "data": {}
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sect2"><h3 id="_13_4_修改商品信息">
+                <a class="anchor" href="#_13_4_修改商品信息"></a>
+                <a class="link" href="#_13_4_修改商品信息">13.4.&nbsp;修改商品信息</a>
+            </h3>
+                <div class="paragraph"><p><strong>URL:</strong><a href="/manager/product/edit" class="bare">&nbsp;/manager/product/edit</a>
+                </p></div>
+                <div class="paragraph"><p><strong>Type:</strong>&nbsp;PUT</p></div>
+                <div class="paragraph"><p><strong>Author:</strong>&nbsp;勿忘初心</p></div>
+                <div class="paragraph"><p><strong>Content-Type:</strong>&nbsp;multipart/form-data</p></div>
+                <div class="paragraph"><p><strong>Description:</strong>&nbsp;修改商品信息</p></div>
+                <div class="paragraph"><p><strong>Query-parameters:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Parameter</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Required</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">shopId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">所属商铺id,可从session中获取</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品id</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productName</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品名称</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productCategoryId</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品类别</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">priority</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品权重</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">point</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品积分</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">normalPrice</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品日常价格(原价)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">promotionPrice</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品促销价格(现价)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">productDesc</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">商品描述</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">enableStatus</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">启用状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">thumbnail</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">file</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">缩略图</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">detailImg</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">file</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">详情图(array of file)</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Request-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="bash">curl -X PUT -H 'Content-Type: multipart/form-data' -F 'thumbnail=' -F 'detailImg=' -i /manager/product/edit --data 'shopId=140&productId=503&productName=chanda.kiehn&productCategoryId=798&priority=961&point=676&normalPrice=25i9le&promotionPrice=sluney&productDesc=rbezfq&enableStatus=945'</code></pre>
+                    </div>
+                </div>
+                <div class="paragraph"><p><strong>Response-fields:</strong></p></div>
+                <table class="tableblock frame-all grid-all spread">
+                    <colgroup>
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                        <col style="width: 25%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="tableblock halign-left valign-top">Field</th>
+                        <th class="tableblock halign-left valign-top">Type</th>
+                        <th class="tableblock halign-left valign-top">Description</th>
+                        <th class="tableblock halign-left valign-top">Since</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">调用结果状态</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">int32</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">响应代码</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">详细信息</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">data</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">返回数据,数据为空则不返回</p></td>
+                        <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="paragraph"><p><strong>Response-example:</strong></p></div>
+                <div class="listingblock">
+                    <div class="content">
+                        <pre><code class="json">{
+  "success": true,
+  "code": 757,
+  "message": "success",
+  "data": {}
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span class="copyright">Generated by smart-doc at 2023-07-28 13:24:46</span><span
+            class="footer-modification">Suggestions,contact,support and error reporting on<a
+            href="https://gitee.com/smart-doc-team/smart-doc" target="_blank">&nbsp;Gitee</a>&nbsp;or<a
+            href="https://github.com/smart-doc-group/smart-doc.git" target="_blank">&nbsp;Github</a></span></footer>
+</div>
+<script src="search.js?v=1690521886901"></script>
+<script>
+    $(function () {
+        const Accordion = function (el, multiple) {
+            this.el = el || {};
+            this.multiple = multiple || false;
+            const links = this.el.find('.dd');
+            links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown);
+        };
+        Accordion.prototype.dropdown = function (e) {
+            const $el = e.data.el;
+            const $this = $(this), $next = $this.next();
+            $next.slideToggle();
+            $this.parent().toggleClass('open');
+            if (!e.data.multiple) {
+                $el.find('.submenu').not($next).slideUp("20").parent().removeClass('open');
+            }
+        };
+        new Accordion($('#accordion'), false);
+        hljs.highlightAll()
+    });
+</script>
+</body>
+</html>

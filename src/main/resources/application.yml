@@ -1,0 +1,44 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-swallow-size: -1  # tomcat默认大小2M，超过2M的文件不会被捕获，需要调整此处大小为100MB或者-1即可
+    # 特殊字符,高版本tomcat的get请求中禁止其出现,The valid characters are defined in RFC 7230 and RFC 3986
+    # <,>,[,\,],^,`,{,|,}
+    relaxed-path-chars: <,>,[,\,],^,`,{,|,}
+    relaxed-query-chars: <,>,[,\,],^,`,{,|,}
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 2MB      # 文件上传大小限制，设置最大值，不能超过该值，否则报错
+      #      max-file-size: 500KB      # 文件上传大小限制，设置最大值，不能超过该值，否则报错
+      max-request-size: 2MB     # 文件最大请求限制，用于批量上传
+      #      max-request-size: 500KB
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true   # 将日期以时间戳形式返回
+  # date-format: yyyy-MM-dd HH:mm:ss    # 日期格式为字符串
+    # time-zone: GMT+8                    # 时区调整
+
+# 整合mybatis-plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true          # 开启驼峰命名匹配
+    auto-mapping-behavior: full                 # 自动映射
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl       # 打印sql执行语句,只能输出到控制台。
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl           # 控制台输出sql语句,日志中记录详细信息
+    mapper-locations: classpath:/mapper/*.xml    # mapper映射文件
+  type-aliases-package: com.o2o.mall.model # 实体映射
+  global-config:                                # 全局配置
+    db-config:
+      id-type: auto                             # 设置主键自增
+      logic-delete-field: deleted               # 逻辑删除字段
+      logic-delete-value: 1                     # 逻辑已删除
+      logic-not-delete-value: 0                 # 逻辑未删除
+
+# 日志级别
+logging:
+  level:
+    root: info
+

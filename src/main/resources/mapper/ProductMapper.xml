@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 示例mapper文件 -->
+<mapper namespace="com.o2o.shop.mapper.ProductMapper">
+    <resultMap id="productMap" type="com.o2o.shop.vo.ProductVO">
+        <id column="product_id" property="productId" />
+        <result column="product_name" property="productName" />
+        <result column="product_desc" property="productDesc" />
+        <result column="img_addr" property="imgAddr" />
+        <result column="normal_price" property="normalPrice" />
+        <result column="promotion_price" property="promotionPrice" />
+        <result column="priority" property="priority" />
+        <result column="create_time" property="createTime" />
+        <result column="last_edit_time" property="lastEditTime" />
+        <result column="enable_status" property="enableStatus" />
+        <result column="point" property="point"/>
+        <association property="productCategory" column="product_category_id"
+                     javaType="com.o2o.shop.vo.ProductCategoryVO">
+            <id column="product_category_id" property="productCategoryId" />
+            <result column="product_category_name" property="productCategoryName" />
+        </association>
+        <association property="shop" column="shop_id"
+                     javaType="com.o2o.shop.vo.ShopVO">
+            <id column="shop_id" property="shopId" />
+            <result column="shop_name" property="shopName" />
+        </association>
+
+        <collection property="productImgList" column="product_id"
+                    ofType="com.o2o.shop.model.ProductImgDO">
+            <id column="product_img_id" property="productImgId" />
+            <result column="detail_img" property="imgAddr" />
+            <result column="img_desc" property="imgDesc" />
+            <result column="priority" property="priority" />
+            <result column="create_time" property="createTime" />
+            <result column="product_id" property="productId" />
+        </collection>
+    </resultMap>
+
+    <select id="queryProductById" parameterType="Integer" resultMap="productMap">
+        SELECT
+            p.product_id,
+            p.product_name,
+            p.product_desc,
+            p.img_addr,
+            p.normal_price,
+            p.promotion_price,
+            p.priority,
+            p.point,
+            p.create_time,
+            p.last_edit_time,
+            p.enable_status,
+            p.product_category_id,
+            p.shop_id,
+            pm.product_img_id,
+            pm.img_addr AS detail_img,
+            pm.img_desc,
+            pm.priority,
+            pm.create_time
+        FROM
+            tb_product p
+        LEFT JOIN
+            tb_product_img pm
+            ON
+            p.product_id =
+            pm.product_id
+        WHERE
+            p.product_id =
+            #{productId}
+        ORDER BY
+            pm.priority DESC
+    </select>
+</mapper>

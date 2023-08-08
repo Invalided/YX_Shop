@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.o2o.shop.mapper.ShopMapper">
+    <!-- 自定义返回值映射对象,此处映射非默认实体类，而是自定义的VO对象 -->
+    <resultMap id="shopMap" type="com.o2o.shop.vo.ShopVO">
+        <id column="shop_id" property="shopId"/>
+        <result column="owner_id" property="ownerId"/>
+        <result column="shop_name" property = "shopName"/>
+        <result column="shop_desc" property = "shopDesc"/>
+        <result column="shop_addr" property = "shopAddress"/>
+        <result column="phone" property="phone"/>
+        <result column="shop_img" property="shopImg" />
+        <result column="priority" property="priority" />
+        <result column="create_time" property="createTime" />
+        <result column="last_edit_time" property="updateTime" />
+        <result column="enable_status" property="enableStatus" />
+        <result column="advice" property="advice" />
+        <association property="area" column="area_id" javaType="com.o2o.shop.model.AreaDO">
+            <id column = "area_id" property="areaId"/>
+            <result column="area_name" property="areaName"/>
+        </association>
+        <association property="shopCategory" column="shop_category_id" javaType="com.o2o.shop.model.ShopCategoryDO">
+            <id column = "shop_category_id" property="shopCategoryId"/>
+            <result column="shop_category_name" property="shopCategoryName"/>
+            <result column="last_edit_time" property="updateTime"/>
+        </association>
+        <!-- 该属性将不会返回到前端 -->
+        <association property="ownerInfo" column="user_id" javaType="com.o2o.shop.model.PersonInfoDO">
+            <id column = "user_id" property="userId"/>
+            <result column="owner_name" property="name"/>
+            <result column="last_edit_time" property="updateTime"/>
+        </association>
+    </resultMap>
+    
+    <select id="queryShopListPage" resultMap="shopMap">
+        SELECT
+        s.shop_id,
+        s.shop_name,
+        s.owner_id,
+        s.shop_desc,
+        s.shop_addr,
+        s.phone,
+        s.shop_img,
+        s.priority,
+        s.create_time,
+        s.last_edit_time,
+        s.enable_status,
+        s.advice,
+        a.area_id,
+        a.area_name,
+        sc.shop_category_id,
+        sc.shop_category_name,
+        p.name owner_name
+        FROM
+        tb_shop s,
+        tb_area a,
+        tb_shop_category sc,
+        tb_person_info p
+        <where>
+            <if test = "shopCondition.shopCategoryBO != null and shopCondition.shopCategoryBO.shopCategoryId != null">
+                and s.shop_category_id = #{shopCondition.shopCategoryBO.shopCategoryId}
+            </if>
+            <if test = "shopCondition.shopCategoryBO != null and
+			shopCondition.shopCategoryBO.parent!=null and
+			shopCondition.shopCategoryBO.parent.shopCategoryId != null">
+                and s.shop_category_id in (select shop_category_id from tb_shop_category
+                where parent_id =
+                #{shopCondition.shopCategoryBO.parent.shopCategoryId})
+            </if>
+            <if test = "shopCondition.areaDO != null and shopCondition.areaDO.areaId != null">
+                and s.area_id = #{shopCondition.areaDO.areaId}
+            </if>
+            <if test = "shopCondition.shopName != null">
+                and s.shop_name like '%${shopCondition.shopName}%'
+            </if>
+            <if test = "shopCondition.enableStatus != null">
+                and s.enable_status = #{shopCondition.enableStatus}
+            </if>
+            <if test = "shopCondition.ownerInfo != null and shopCondition.ownerInfo.userId != null">
+                and s.owner_id = #{shopCondition.ownerInfo.userId}
+            </if>
+            and
+            s.area_id = a.area_id
+            and
+            s.shop_category_id = sc.shop_category_id
+            AND p.user_id = s.owner_id
+        </where>
+        order by
+        s.priority DESC
+    </select>
+
+    <select id="queryByShopId" resultMap="shopMap" parameterType="Integer">
+        SELECT
+            s.shop_id,
+            s.owner_id,
+            s.shop_name,
+            s.shop_desc,
+            s.shop_addr,
+            s.phone,
+            s.shop_img,
+            s.priority,
+            s.create_time,
+            s.last_edit_time,
+            s.enable_status,
+            s.advice,
+            a.area_id,
+            a.area_name,
+            sc.shop_category_id,
+            sc.shop_category_name
+        FROM
+            tb_shop s,
+            tb_area a,
+            tb_shop_category sc
+        where
+            s.area_id = a.area_id
+          AND
+            s.shop_category_id = sc.shop_category_id
+          AND
+            s.shop_id = #{shopId}
+    </select>
+</mapper>
