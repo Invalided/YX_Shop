@@ -60,8 +60,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResultDataVO handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
         log.error("捕获http请求的方法不匹配异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10006.getCode(),
-                ExceptionCodeEnum.EC10006.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10006);
     }
 
     /**
@@ -70,8 +69,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResultDataVO missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException e) {
         log.error("捕获参数缺失异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                ExceptionCodeEnum.EC10001.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
 
     /**
@@ -80,8 +78,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(TypeMismatchException.class)
     public ResultDataVO typeMismatchExceptionHandler(TypeMismatchException e) {
         log.error("捕获请求参数类型不匹配异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                ExceptionCodeEnum.EC10001.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
 
     /**
@@ -91,8 +88,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ResponseBody
     public ResultDataVO dataFormatExceptionHandler(DataFormatException e) {
         log.error("捕获数据格式转换错误异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                ExceptionCodeEnum.EC10001.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
 
 
@@ -103,10 +99,9 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
      * @return
      */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
-    public ResultDataVO handleHTTPBindException(HttpMessageNotReadableException e) {
+    public ResultDataVO handleHttpBindException(HttpMessageNotReadableException e) {
         log.error("捕获HTTP请求参数缺失异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                ExceptionCodeEnum.EC10001.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
 
     /**
@@ -118,8 +113,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = BusinessException.class)
     public ResultDataVO handleBusinessException(BusinessException businessException) {
         log.error("捕获业务异常", businessException);
-        return ResultDataVO.failure(businessException.getCode(),
-                businessException.getMessage());
+        return ResultDataVO.failure(businessException.getCodeEnum());
     }
 
 
@@ -130,8 +124,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     //@ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
     //public ResultDataVO handleArgumentTypeException(MethodArgumentTypeMismatchException e){
     //    log.error("捕获参数类型不匹配异常",e);
-    //    return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-    //            ExceptionCodeEnum.EC10001.getMessage());
+    //    return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     //}
 
     /**
@@ -153,8 +146,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
         // 拼接错误信息
         errorList.forEach(error ->
                 errMsg.append(error.getDefaultMessage()).append(";"));
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                errMsg.toString());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
 
     /**
@@ -169,8 +161,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
         // [),需要+1
         int index = sourceMsg.lastIndexOf(".") + 1;
         String errMsg = sourceMsg.substring(index).replace(": ", "");
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                errMsg);
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
 
     /**
@@ -182,10 +173,8 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = MissingServletRequestPartException.class)
     public ResultDataVO handleMissingServletRequestPart(MissingServletRequestPartException e) {
         log.error("捕获表单数据获取异常,可能发生在图片上传时参数缺失或图片不存在", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10001.getCode(),
-                ExceptionCodeEnum.EC10001.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10001);
     }
-    // todo 同步改动到liquor中
 
     /**
      * 图片大小超过限制异常，application.yml中的max-file-size: 2MB,限制文件2MB
@@ -196,8 +185,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = MaxUploadSizeExceededException.class)
     public ResultDataVO handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
         log.error("捕获图片上传超过指定大小异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10012.getCode(),
-                ExceptionCodeEnum.EC10012.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10012);
     }
 
     /**
@@ -219,8 +207,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = RuntimeException.class)
     public ResultDataVO handleRuntimeException(RuntimeException e) {
         log.error("捕获运行时异常", e);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10000.getCode(),
-                ExceptionCodeEnum.EC10000.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10000);
     }
 
 
@@ -232,8 +219,7 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = Throwable.class)
     public ResultDataVO handleThrowable(Throwable throwable) {
         log.error("捕获系统级异常", throwable);
-        return ResultDataVO.failure(ExceptionCodeEnum.EC10000.getCode(),
-                ExceptionCodeEnum.EC10000.getMessage());
+        return ResultDataVO.failure(ExceptionCodeEnum.EC10000);
     }
 
     @Override
@@ -244,6 +230,14 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
     @SneakyThrows
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+        /**
+         * 未被捕获的错误进行拦截
+         */
+        if(body == null){
+            log.error("未处理的异常信息,可能发生在Redis/数据库连接错误中,请检查错误日志");
+            return ResultDataVO.failure(ExceptionCodeEnum.EC10000);
+        }
+
         /**
          * 返回类型为String则需要手动序列化
          */
@@ -266,7 +260,6 @@ public class GlobalExceptionAdvice implements ResponseBodyAdvice<Object> {
             return new ResultDataVO(false, code, message, null);
 
         }
-
 
         return ResultDataVO.success(body);
     }

@@ -1,7 +1,6 @@
 package com.o2o.shop.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.o2o.shop.dto.superadmin.AreaDTO;
 import com.o2o.shop.exception.BusinessException;
 import com.o2o.shop.exception.ExceptionCodeEnum;
@@ -48,9 +47,6 @@ public class AreaServiceImpl implements AreaService {
             // 从Redis中读取数据
             redisCache = redisOperator.keyIsExist(AreaService.AREA_LIST);
         }
-        // 将List转为字符串
-        ObjectMapper objectMapper = new ObjectMapper();
-        long currentTime = System.currentTimeMillis();
         // 是否有缓存
         if(redisCache){
             areaVOList = cacheConvert.readCache(AreaService.AREA_LIST,new ArrayList<AreaVO>());

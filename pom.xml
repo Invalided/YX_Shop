@@ -30,10 +30,10 @@
             <scope>test</scope>
         </dependency>
         <!-- actuator 监控工具,可以检测redis健康状况 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
+<!--        </dependency>-->
 
         <!-- redis 配置依赖-->
         <dependency>

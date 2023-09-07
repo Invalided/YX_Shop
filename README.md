@@ -49,8 +49,9 @@ src
 ### 项目启动
 
 > 下载代码到本地IDE后,确保本地JDK版本为8,依次打开src/main/java/com/o2o/shop下的shopApplication类，点击main函数行左侧run按钮即可启动，
-> 默认加载resources文件下的application-dev.yml配置文件,端口为8094,如需加载其它文件,请在application.yml自行修改。
-> 项目中使用了Redis作为缓存,会在加载部分信息时先验证Redis是否正常运行再进行读取,若未配置redis则默认查询数据库。
+> 默认加载resources文件下的application-dev.yml配置文件,端口为9094,如需加载其它文件,请在application.yml自行修改。
+> 项目中使用了Redis作为缓存,会在加载部分信息时先验证Redis是否正常运行再进行读取,若未配置Redis则默认查询数据库。请注意,由于某些查询方法依赖Redis,
+> 当未启用Redis时,前置的校验会使响应将变得很缓慢。
 
 ### 简单示例
 

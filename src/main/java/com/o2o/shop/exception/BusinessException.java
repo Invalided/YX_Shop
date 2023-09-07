@@ -11,22 +11,17 @@ import lombok.Getter;
 
 @Getter
 public class BusinessException extends RuntimeException {
-    /**
-     * 错误编码
-     */
-    private Integer code;
-    /**
-     * 错误信息
-     */
-    private String message;
 
+    /**
+     * 错误对象枚举
+     */
+    private ExceptionCodeEnum codeEnum;
     /**
      * 根据传入的异常枚举解析异常相关信息。
      * @param codeEnum
      */
     public BusinessException(ExceptionCodeEnum codeEnum){
-        this.message = codeEnum.getMessage();
-        this.code = codeEnum.getCode();
+        this.codeEnum = codeEnum;
     }
 }
 

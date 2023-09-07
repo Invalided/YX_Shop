@@ -28,7 +28,8 @@ public class HelloController {
      */
     @GetMapping("/{id}")
     public ResultDataVO getMsg(@RequestParam(required = false) String name,
-                                       @Max(value = 10,message = "最大值不能超过10") @PathVariable(name = "id") int uid) {
+                               @Max(value = 10,message = "最大值不能超过10")
+                               @PathVariable(name = "id") int uid) {
         log.info("访问hello下的msg方法。");
         String result = "Hello,"+name+" id "+uid;
 

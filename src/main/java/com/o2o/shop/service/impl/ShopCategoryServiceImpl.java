@@ -58,49 +58,49 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
         // 设置缓存key
         StringBuffer shopCategoryCacheKey = null;
         // 创建返回数据对象
-        List<ShopCategoryVO> shopCategoryVOList = null;
+        List<ShopCategoryVO> shopCategoryVOList;
         // 一二级类别进行缓存查询
-        if(!allPage){
+        if (!allPage) {
             // 创建当前业务缓存key
             shopCategoryCacheKey = new StringBuffer(ShopCategoryService.SHOP_CATEGORY);
-            if(shopCategoryCondition == null){
+            if (shopCategoryCondition == null) {
                 // 所有一级分类
                 shopCategoryCacheKey.append("_primary");
-            }else if(shopCategoryCondition.isEmpty()){
+            } else if (shopCategoryCondition.isEmpty()) {
                 // 所有二级分类
                 shopCategoryCacheKey.append("_secondary");
             }
 
-            if(redisOperator.ping()){
+            if (redisOperator.ping()) {
                 // 是否存在缓存
-                if(redisOperator.keyIsExist(shopCategoryCacheKey.toString())){
+                if (redisOperator.keyIsExist(shopCategoryCacheKey.toString())) {
                     // 获取数据返回
                     shopCategoryVOList = cacheOperator.readCache(shopCategoryCacheKey.toString(),
                             new ArrayList<ShopCategoryVO>());
-                    return new PageVO(shopCategoryVOList,shopCategoryVOList.size());
+                    return new PageVO(shopCategoryVOList, shopCategoryVOList.size());
                 }
             }
         }
 
         // 分页条件
-        Page<ShopCategoryDO> page = new Page<>(pageNum,pageSize);
+        Page<ShopCategoryDO> page = new Page<>(pageNum, pageSize);
         // 查询数据
         Page<ShopCategoryVO> shopCategoryVOPage = shopCategoryMapper.queryShopCategoryListPage(page,
-                shopCategoryCondition,allPage);
+                shopCategoryCondition, allPage);
         // 条件转换
         shopCategoryVOList = shopCategoryVOPage.getRecords();
         // 存入缓存,排除全类别查询
-        if(!allPage){
-            cacheOperator.writeCache(shopCategoryCacheKey.toString(),shopCategoryVOList);
+        if (redisOperator.ping() && !allPage) {
+            cacheOperator.writeCache(shopCategoryCacheKey.toString(), shopCategoryVOList);
         }
 
-        return new PageVO(shopCategoryVOList,shopCategoryVOList.size());
+        return new PageVO(shopCategoryVOList, shopCategoryVOList.size());
     }
 
     @Override
     public ResultDataVO createShopCategory(ShopCategoryDTO shopCategoryDTO, MultipartFile multipartFile) {
         // 取出图片
-        if(multipartFile.isEmpty()){
+        if (multipartFile.isEmpty()) {
             throw new BusinessException(ExceptionCodeEnum.EC10008);
         }
         // 获取文件存储的相对路径
@@ -108,31 +108,31 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
         // 设置DTO对象的属性
         shopCategoryDTO.setShopCategoryImg(relativePath);
         // 判断类别,若为二级分类,则需要查看一级分类是否存在
-        if (shopCategoryDTO.getParentId() != null){
+        if (shopCategoryDTO.getParentId() != null) {
             // 查询该一级分类是否存在
             QueryWrapper queryWrapper = new QueryWrapper();
-            queryWrapper.eq("shop_category_id",shopCategoryDTO.getParentId());
+            queryWrapper.eq("shop_category_id", shopCategoryDTO.getParentId());
             queryWrapper.isNull("parent_id");
             ShopCategoryDO primaryShopCategory = shopCategoryMapper.selectOne(queryWrapper);
-            if(primaryShopCategory == null){
+            if (primaryShopCategory == null) {
                 log.error("无法新增类别,一级类别不存在");
                 throw new BusinessException(ExceptionCodeEnum.EC40005);
             }
         }
         ShopCategoryDO shopCategoryDO = new ShopCategoryDO();
         // 拷贝属性，写入到数据库
-        BeanUtils.copyProperties( shopCategoryDTO, shopCategoryDO);
+        BeanUtils.copyProperties(shopCategoryDTO, shopCategoryDO);
         int effectNum = shopCategoryMapper.insert(shopCategoryDO);
-        if(effectNum < 1){
+        if (effectNum < 1) {
             log.error("商铺类别创建失败");
             throw new BusinessException(ExceptionCodeEnum.EC40005);
         }
-        if(shopCategoryDTO.getParentId() == null){
+        if (shopCategoryDTO.getParentId() == null) {
             // 清除一级分类缓存
-            cacheOperator.clearCache(SHOP_CATEGORY+"_primary");
-        }else{
+            cacheOperator.clearCache(SHOP_CATEGORY + "_primary");
+        } else {
             // 清除二级缓存
-            cacheOperator.clearCache(SHOP_CATEGORY+"_secondary");
+            cacheOperator.clearCache(SHOP_CATEGORY + "_secondary");
         }
         return ResultDataVO.success(null);
     }
@@ -143,28 +143,28 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
         StringBuffer cacheKey = new StringBuffer(SHOP_CATEGORY);
         // 更新前先查
         ShopCategoryDO sourceShopCategoryDO = shopCategoryMapper.selectById(shopCategoryDTO.getShopCategoryId());
-        if(sourceShopCategoryDO == null){
+        if (sourceShopCategoryDO == null) {
             throw new BusinessException(ExceptionCodeEnum.EC10002);
         }
         // 拼接缓存key
-        if(sourceShopCategoryDO.getParentId() == null){
+        if (sourceShopCategoryDO.getParentId() == null) {
             cacheKey.append("_primary");
-        }else{
+        } else {
             cacheKey.append("_secondary");
         }
         // 是否更新图片
-        if(multipartFile != null && multipartFile.isEmpty()){
+        if (multipartFile != null && multipartFile.isEmpty()) {
             // 取出图片,并赋值
             shopCategoryDTO.setShopCategoryImg(imageStorage.handImage(multipartFile, "ShopCategory", null));
         }
-        BeanUtils.copyProperties(shopCategoryDTO,sourceShopCategoryDO);
+        BeanUtils.copyProperties(shopCategoryDTO, sourceShopCategoryDO);
         int effectNum = shopCategoryMapper.updateById(sourceShopCategoryDO);
-        if(effectNum < 0){
+        if (effectNum < 0) {
             log.error("商铺类别更新失败(superAdmin)");
             throw new BusinessException(ExceptionCodeEnum.EC10010);
         }
         // 清理缓存
-        if(redisOperator.ping()){
+        if (redisOperator.ping()) {
             cacheOperator.clearCache(cacheKey.toString());
         }
         return ResultDataVO.success(null);
@@ -175,34 +175,34 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
         // 删除前先查
         ShopCategoryDO sourceShopCategoryDO = new ShopCategoryDO();
         sourceShopCategoryDO = shopCategoryMapper.selectById(id);
-        if(sourceShopCategoryDO == null){
+        if (sourceShopCategoryDO == null) {
             throw new BusinessException(ExceptionCodeEnum.EC10002);
         }
         StringBuffer cacheKey = new StringBuffer(SHOP_CATEGORY);
         // 是否为一级列表
-        if(sourceShopCategoryDO.getParentId() == null){
+        if (sourceShopCategoryDO.getParentId() == null) {
             // 获取一级类别对应的的列表
             QueryWrapper queryWrapper = new QueryWrapper();
-            queryWrapper.eq("parent_id",sourceShopCategoryDO.getShopCategoryId());
+            queryWrapper.eq("parent_id", sourceShopCategoryDO.getShopCategoryId());
             // 获取二级类别
             List<ShopCategoryDO> secondaryVOList = shopCategoryMapper.selectList(queryWrapper);
-            if(!secondaryVOList.isEmpty()){
+            if (!secondaryVOList.isEmpty()) {
                 log.error("待删除的一级列表包含二级列表,无法继续操作");
                 throw new BusinessException(ExceptionCodeEnum.EC10011);
-            }else{
+            } else {
                 cacheKey.append("_primary");
             }
-        }else{
+        } else {
             cacheKey.append("_secondary");
         }
         // 无子项的一级分类或普通二级分类直接删除
         int effectNum = shopCategoryMapper.deleteById(sourceShopCategoryDO.getShopCategoryId());
-        if(effectNum < 1){
+        if (effectNum < 1) {
             log.error("删除类别信息失败(superAdmin");
             throw new BusinessException(ExceptionCodeEnum.EC10010);
         }
         // 清除对应缓存
-        if(redisOperator.ping()){
+        if (redisOperator.ping()) {
             cacheOperator.clearCache(cacheKey.toString());
         }
         return ResultDataVO.success(null);

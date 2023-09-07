@@ -33,6 +33,7 @@ public class ResultDataVO<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
+
     /**
      * 操作成功时返回的数据
      * @param result
@@ -51,18 +52,34 @@ public class ResultDataVO<T> {
 
     /**
      * 操作失败
-     * @param code
-     * @param message
      * @param <T>
+     * @param exceptionCodeEnum 错误类型枚举
      * @return
      */
-    public static <T> ResultDataVO<T> failure(Integer code, String message){
+    public static <T> ResultDataVO<T> failure(ExceptionCodeEnum exceptionCodeEnum){
 
         return ResultDataVO.<T>builder()
                 .success(false)
-                .code(code)
-                .message(message)
+                .code(exceptionCodeEnum.getCode())
+                .message(exceptionCodeEnum.getMessage())
                 .data(null)
+                .build();
+    }
+
+    /**
+     * 操作失败,返回信息
+     * @param exceptionCodeEnum 错误信息列表
+     * @param result 对应失败信息对象
+     * @param <T>
+     * @return
+     */
+    public static <T> ResultDataVO<T> failure(ExceptionCodeEnum exceptionCodeEnum, T result){
+
+        return ResultDataVO.<T>builder()
+                .success(false)
+                .code(exceptionCodeEnum.getCode())
+                .message(exceptionCodeEnum.getMessage())
+                .data(result)
                 .build();
     }
 }
