@@ -3,6 +3,7 @@ package com.o2o.shop.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.o2o.shop.bo.ShopCategoryBO;
+import com.o2o.shop.config.quartz.RedisCheckConfig;
 import com.o2o.shop.constant.GlobalConstant;
 import com.o2o.shop.dto.superadmin.ShopCategoryDTO;
 import com.o2o.shop.exception.BusinessException;
@@ -71,7 +72,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
                 shopCategoryCacheKey.append("_secondary");
             }
 
-            if (redisOperator.ping()) {
+            if (RedisCheckConfig.redisConnected) {
                 // 是否存在缓存
                 if (redisOperator.keyIsExist(shopCategoryCacheKey.toString())) {
                     // 获取数据返回
@@ -90,7 +91,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
         // 条件转换
         shopCategoryVOList = shopCategoryVOPage.getRecords();
         // 存入缓存,排除全类别查询
-        if (redisOperator.ping() && !allPage) {
+        if (RedisCheckConfig.redisConnected && !allPage) {
             cacheOperator.writeCache(shopCategoryCacheKey.toString(), shopCategoryVOList);
         }
 
@@ -164,7 +165,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
             throw new BusinessException(ExceptionCodeEnum.EC10010);
         }
         // 清理缓存
-        if (redisOperator.ping()) {
+        if (RedisCheckConfig.redisConnected) {
             cacheOperator.clearCache(cacheKey.toString());
         }
         return ResultDataVO.success(null);
@@ -202,7 +203,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
             throw new BusinessException(ExceptionCodeEnum.EC10010);
         }
         // 清除对应缓存
-        if (redisOperator.ping()) {
+        if (RedisCheckConfig.redisConnected) {
             cacheOperator.clearCache(cacheKey.toString());
         }
         return ResultDataVO.success(null);

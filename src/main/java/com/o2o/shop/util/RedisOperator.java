@@ -36,7 +36,7 @@ public class RedisOperator {
 		try{
 			result = "PONG".equals(redisTemplate.getConnectionFactory().getConnection().ping());
 		}catch (RedisConnectionFailureException e){
-			log.error("捕获Redis连接异常,将造成数据响应缓慢,请检查服务运行状态!");
+			log.error("捕获Redis连接异常,请检查服务运行状态!");
 			result = false;
 		}
 		return result;

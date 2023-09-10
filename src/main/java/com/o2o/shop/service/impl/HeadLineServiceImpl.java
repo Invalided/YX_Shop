@@ -3,6 +3,7 @@ package com.o2o.shop.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.o2o.shop.bo.HeadLineBO;
+import com.o2o.shop.config.quartz.RedisCheckConfig;
 import com.o2o.shop.constant.GlobalConstant;
 import com.o2o.shop.dto.superadmin.HeadLineDTO;
 import com.o2o.shop.exception.BusinessException;
@@ -50,7 +51,7 @@ public class HeadLineServiceImpl implements HeadLineService {
         List<HeadLineVO> headLineVOList;
         // 先从Redis中读取数据
         boolean redisCache = false;
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             redisCache = redisOperator.keyIsExist(HeadLineService.HEAD_LINE);
         }
         // 是否有缓存
@@ -73,7 +74,7 @@ public class HeadLineServiceImpl implements HeadLineService {
                 throw new BusinessException(ExceptionCodeEnum.EC10002);
             }
             // 转为JSON格式,先查redis存活状态
-            if(redisOperator.ping()){
+            if(RedisCheckConfig.redisConnected){
                 cacheConvert.writeCache(HeadLineService.HEAD_LINE,headLineVOList);
             }
         }
@@ -130,7 +131,7 @@ public class HeadLineServiceImpl implements HeadLineService {
         BeanUtils.copyProperties(headLineDTO,headLineDO);
         headLineMapper.insert(headLineDO);
         // 清除缓存
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(HeadLineService.HEAD_LINE);
         }
         return ResultDataVO.success(null);
@@ -144,7 +145,7 @@ public class HeadLineServiceImpl implements HeadLineService {
             throw new BusinessException(ExceptionCodeEnum.EC10002);
         }
         headLineMapper.deleteById(id);
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(HeadLineService.HEAD_LINE);
         }
         return ResultDataVO.success(null);
@@ -171,7 +172,7 @@ public class HeadLineServiceImpl implements HeadLineService {
             throw new BusinessException(ExceptionCodeEnum.EC10010);
         }
         // 清除缓存
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(HeadLineService.HEAD_LINE);
         }
         return ResultDataVO.success(null);
@@ -185,7 +186,7 @@ public class HeadLineServiceImpl implements HeadLineService {
             throw new BusinessException(ExceptionCodeEnum.EC10002);
         }
         headLineMapper.deleteBatchIds(idList);
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(HeadLineService.HEAD_LINE);
         }
         return ResultDataVO.success(null);

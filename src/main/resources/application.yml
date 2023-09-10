@@ -37,6 +37,19 @@ mybatis-plus:
       logic-delete-value: 1                     # 逻辑已删除
       logic-not-delete-value: 0                 # 逻辑未删除
 
+# 定时任务配置,检测redis状态
+quartz:
+  redis:
+    name: "redis-check"
+    group: 'redis'
+    # 定时检测时间: 单位 s
+    intervalTime: 600
+  sellDaily:
+    name: "productSellDaily"
+    group: "product"
+    # crontab表达式,指定任务执行时间  0/50 * * * * ?
+    crontabExpression: "* 10 0 * * ?"
+
 # 日志级别
 logging:
   level:

@@ -1,6 +1,7 @@
 package com.o2o.shop.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.o2o.shop.config.quartz.RedisCheckConfig;
 import com.o2o.shop.dto.superadmin.AreaDTO;
 import com.o2o.shop.exception.BusinessException;
 import com.o2o.shop.exception.ExceptionCodeEnum;
@@ -43,7 +44,7 @@ public class AreaServiceImpl implements AreaService {
         List<AreaVO> areaVOList;
         boolean redisCache = false;
         // 使用Redis时先看是否存活
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             // 从Redis中读取数据
             redisCache = redisOperator.keyIsExist(AreaService.AREA_LIST);
         }
@@ -66,7 +67,7 @@ public class AreaServiceImpl implements AreaService {
                 throw new BusinessException(ExceptionCodeEnum.EC10002);
             }
             // 转为JSON格式,先看redis是否存活
-            if(redisOperator.ping()){
+            if(RedisCheckConfig.redisConnected){
                 cacheConvert.writeCache(AreaService.AREA_LIST, areaVOList);
             }
         }
@@ -100,7 +101,7 @@ public class AreaServiceImpl implements AreaService {
         BeanUtils.copyProperties(areaDTO, areaDO);
         areaMapper.insert(areaDO);
         // 清除缓存
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(AreaService.AREA_LIST);
         }
         return ResultDataVO.success(null);
@@ -114,7 +115,7 @@ public class AreaServiceImpl implements AreaService {
             throw new BusinessException(ExceptionCodeEnum.EC10002);
         }
         areaMapper.deleteById(id);
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(AreaService.AREA_LIST);
         }
         return ResultDataVO.success(null);
@@ -139,7 +140,7 @@ public class AreaServiceImpl implements AreaService {
         BeanUtils.copyProperties(areaDTO, areaDO);
         areaMapper.updateById(areaDO);
         // 删除Redis缓存
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(AreaService.AREA_LIST);
         }
         return ResultDataVO.success(null);
@@ -157,7 +158,7 @@ public class AreaServiceImpl implements AreaService {
             log.error("批量删除头条信息失败,删除数目与入参数目不一致");
             throw new BusinessException(ExceptionCodeEnum.EC10010);
         }
-        if(redisOperator.ping()){
+        if(RedisCheckConfig.redisConnected){
             cacheConvert.clearCache(AreaService.AREA_LIST);
         }
         return ResultDataVO.success(null);
