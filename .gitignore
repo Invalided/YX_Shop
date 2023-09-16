@@ -29,3 +29,11 @@ target
 .springBeans
 .settings
 out
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.mvn
+

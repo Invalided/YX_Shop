@@ -1,5 +1,6 @@
 # YX_Shop
-o2o校园商铺平台Server端，此项目提供后端服务接口，配套前端项目[YX_Shop_Web](https://github.com/Invalided/YX_Shop_Web)<br/>
+#### 悦享校园2.0(SpringBoot版本)已在dev分支发布，框架升级，代码重构，欢迎[点击](https://github.com/Invalided/YX_Shop/tree/dev)查看
+o2o校园商铺平台Server端，此项目提供后端服务接口，配套前端项目[YX_Shop_Web](https://github.com/Invalided/YX_Shop_Web)
 # 技术架构
 ![技术架构](https://images.gitee.com/uploads/images/2021/0805/091111_78645843_5558730.png "架构.png")
 # 配置说明
